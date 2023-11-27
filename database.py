@@ -1,21 +1,20 @@
 # try wrapping the code below that reads a persons.csv file in a class and make it more general such that it can read in any csv file
-
 import csv, os
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
-persons = []
+database_persons = []
 with open(os.path.join(__location__, 'persons.csv')) as f:
     rows = csv.DictReader(f)
     for r in rows:
-        persons.append(dict(r))
+        database_persons.append(dict(r))
 
-login = []
+database_logins = []
 with open(os.path.join(__location__, 'login.csv')) as f:
     rows = csv.DictReader(f)
     for r in rows:
-        login.append(dict(r))
+        database_logins.append(dict(r))
 
 import copy
 class Table:
@@ -86,6 +85,20 @@ class Table:
         for i in  self.table:
             if self.table["ID"] == user_id:
                 self.table[key] = value
+
+
+class DB:
+    def __init__(self):
+        self.database = []
+
+    def insert(self, table):
+        self.database.append(table)
+
+    def search(self, table_name):
+        for table in self.database:
+            if table.table_name == table_name:
+                return table
+        return None
 
 
 # add in code for a Database class

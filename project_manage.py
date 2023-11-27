@@ -1,9 +1,22 @@
 # import database module
-
+import database
 # define a funcion called initializing
 
 def initializing():
-    pass
+    table_person = database.Table("person",database.database_persons)
+    table_login = database.Table("login",database.database_logins)
+    person = database.DB()
+    login = database.DB()
+    person.insert(table_person)
+    login.insert(table_login)
+    data_id = person.search("ID")
+    data_username = login.search("username")
+    data_password = login.search("password")
+    data_role = login.searach("role")
+    data_firstname = person.search("fist")
+    data_lastname = person.search("last")
+
+
 
 # here are things to do in this function:
 
@@ -19,7 +32,20 @@ def initializing():
 # define a funcion called login
 
 def login():
-    pass
+    user = input("username : ")
+    password = input("password : ")
+    pass = login.search("password")
+
+    for i in person:
+        id = []
+        if user == person[1] and password == person[2]:
+            id.append(person[0])
+            id.append(person[3])
+            return id
+        elif user == person[1]
+            print("wrong password")
+        elif password == person[2]
+
 
 # here are things to do in this function:
    # add code that performs a login task
@@ -58,4 +84,6 @@ val = login()
     # see and do advisor related activities
 
 # once everyhthing is done, make a call to the exit function
+
+
 exit()
