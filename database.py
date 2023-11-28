@@ -1,5 +1,5 @@
 # try wrapping the code below that reads a persons.csv file in a class and make it more general such that it can read in any csv file
-import csv, os
+import csv, os,copy
 
 __location__ = os.path.realpath(
     os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -16,7 +16,18 @@ with open(os.path.join(__location__, 'login.csv')) as f:
     for r in rows:
         database_logins.append(dict(r))
 
-import copy
+class CSVReader:
+    def __init__(self, input_file):
+        self.input_file = input_file
+
+    def read_csv(self):
+        temp = []
+        with open(self.input_file) as f:
+            rows = csv.DictReader(f)
+            for r in rows:
+                temp.append(dict(r))
+        return temp
+
 class Table:
     def __init__(self, table_name, table):
         self.table_name = table_name
@@ -108,5 +119,3 @@ class DB:
 # modify the code in the Table class so that it supports the insert operation where an entry can be added to a list of dictionary
 
 # modify the code in the Table class so that it supports the update operation where an entry's value associated with a key can be updated
-git config --global user.email "Sarach.ta@ku.th"
-git config --global user.name "Sarachtt"
