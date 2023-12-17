@@ -22,7 +22,7 @@ class CSVReader:
 
     def read_csv(self):
         temp = []
-        with open(self.input_file) as f:
+        with open(os.path.join(__location__,self.input_file)) as f:
             rows = csv.DictReader(f)
             for r in rows:
                 temp.append(dict(r))

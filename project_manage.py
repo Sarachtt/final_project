@@ -38,7 +38,7 @@ def login():
     for login in login_check.table:
         if user == login["username"] and password == login["password"]:
             print(f"Welcome {login['username']}")
-            print(f"Role : {login["role"]}")
+            print(f"Role : {login['role']}")
             return [login["ID"], login["role"]]
         else:
             print("Your username or password is wrong please try again.")
@@ -61,9 +61,14 @@ def exit():
 
 
 # make calls to the initializing and login functions defined above
+def logged(role):
+    
+
+
 
 initializing()
 val = login()
+
 
 # based on the return value for login, activate the code that performs activities according to the role defined for that person_id
 
