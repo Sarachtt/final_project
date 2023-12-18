@@ -5,7 +5,7 @@ from database import Table,DB,CSVReader
 
 project_list_header = ["Project_id","Project_name","advisor", "id","role","status"]
 member_pending_header=["inveter","member_id","date"]
-advisor_pending_header = ["invitor","advisor_name","date"]
+advisor_pending_header = ["invitor","advisor_id","date"]
 today = date.today
 all_role =['student','member','lead','faculty','advisor']
 
@@ -176,7 +176,7 @@ class lead:
                     print("request sent")
         
     def advisor_invite(self,):
-        response = input("Enter the advisor's name you want to invite: ")
+        response = input("Enter the advisor's id you want to invite: ")
         input = [[self.id,response,today]]
         with open ("advisor_pending_list","a") as advisor:
             advisor_pending = csv.writer(advisor)
@@ -216,6 +216,7 @@ class admin:
     def menu(self):
         print("Menu:")
         print("1.Add user")
+        print("2.Logout")
         response = input("Enter")
         return response
 
@@ -242,7 +243,25 @@ class admin:
             print("Please try again")
 
 class facility:
+    def __init__(self,id):
+        self.id = id
     
+    def menu(self):
+        print("Menu: ")
+        print("1.See request")
+        print("2.Logout")
+        response = input("Enter: ")
+        if response == "1":
+            print("Your request:")
+            db = initializing()
+            advisor_check = db.search('advisor_pending_list')
+            for i in advisor_check.table:
+                if self.id == i['advisor_id']:
+                    print(f"You have request form : {i['invitor']} date: {i['date']}")
+            return response
+        elif response =="2":
+            return response
+
 
 def exit():
     print("Saving")
@@ -286,5 +305,24 @@ def exit():
 
 initializing()
 val = login()
+if val[1] == "student":
+    a = student(val[0])
+    a.choice()
+elif val[1] =="admin":
+    b = admin(val[0])
+    admin_res = b.menu
+    if admin_res =="1":
+        b.add_user()
+    elif admin_res == "2":
+        exit()
+elif val[1] =="faculty":
+    c = facility(val[0])
+    faci_res = c.menu()
+    if faci_res =="2":
+        exit()
+
+
+
+
 
 
