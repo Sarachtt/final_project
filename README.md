@@ -59,7 +59,9 @@ All file that store data
 #Missing features and bugs
 
 -admin can't delete user from database
+
 -student advisor can't accept request from lead
+
 -no type checks at all
 
   
