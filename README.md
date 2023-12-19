@@ -57,6 +57,7 @@ All file that store data
 | Faculty | See and Respondan invitation request(to be an advisor)         | invitation_detail       | Faculty |                       50% |
 
 #Missing features and bugs
+
 -admin can't delete user from database
 -student advisor can't accept request from lead
 -no type checks at all
